@@ -8,78 +8,124 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
+const teamArray = [];
 
-
-const myTeamArray = [];
-
-
-// manager questions
-const managerQuestions = () => {
-
-    return inquirer.prompt([{
-        type: "input",
-        message: "What is the Manager's name?",
-        name: "name"
-    }, {
-        type: "input",
-        message: "What is the Manager's ID number?",
-        name: 'id'
-    }, {
-        type: "input",
-        message: "What is the Manager's email address? ",
-        name: "email"
-    }, {
-        type: "input",
-        message: "What is the Manager's office number?",
-        name: "officeNumber"
-    }]).then(managerInfo => {
-        const {
-            name,
-            id,
-            email,
-            officeNumber
-        } = managerInfo;
-        const manager = new Manager(managerInfo.name, managerInfo.id, managerInfo.email, managerInfo.officeNumber);
-
-        myTeamArray.push(manager);
-        // console.log(manager)
-    })
+function startQuestions() {
+  managerQuestions();
 }
 
-const employeeQuestions = () => {
-    return inquirer.prompt([{
-        type: "list",
-        message: "Would you like to add an engineer, an intern or are you finished building the team?",
-        choices: ["Engineer", "Intern", "Finsihed"],
-        name: "role"
-    }]).then(({
-        role
-    }) => {
-        if (role == "Engineer") {
-            return inquirer.prompt([{
-                type: "input",
-                message: "What is the Engineer's name?",
-                name: "name"
-            }, {
-                type: "input",
-                message: "What is the Engineer's ID number?",
-                name: "id"
-            }, {
-                type: "input",
-                message: "What is the Engineer's email address? ",
-                name: "email"
-            }, {
-                type: "input",
-                message: "What is the Engineer's GitHub Username?",
-                name: "github"
-            }]).then(employeeInfo => {
-                const employee = new Engineer(employeeInfo.name, employeeInfo.id, employeeInfo.email, employeeInfo.github)
-                myTeamArray.push(...employeeInfo, ...role);
-
-            })
+function managerQuestions() {
+  inquirer
+    .prompt([
+        {
+            type: "input",
+            message: "What is the Manager's name?",
+            name: "name"
+        }, {
+            type: "input",
+            message: "What is the Manager's ID number?",
+            name: 'id'
+        }, {
+            type: "input",
+            message: "What is the Manager's email address? ",
+            name: "email"
+        }, {
+            type: "input",
+            message: "What is the Manager's office number?",
+            name: "officeNumber"
         }
-    })
+    ])
+    .then((info) => {
+      const manager = new Manager(
+        info.name,
+        info.id,
+        info.email,
+        info.officeNumber
+      );
+      console.log(manager);
+      teamArray.push(manager);
+      addNewMember();
+    });
 }
 
-managerQuestions()
-.then(employeeQuestions());
+function addNewMember() {
+  inquirer
+    .prompt([
+        {
+            type: "list",
+            message: "Would you like to add an engineer, an intern or are you finished building the team?",
+            choices: ["Engineer", "Intern", "Finished"],
+            name: "whatRole"
+        },
+    ])
+    .then((info) => {
+      if (info.whatRole = "Engineer") {
+        engineerQuestions();
+      } else if (info.whatRole = "Intern") {
+        internQuestions();
+      } else {
+        createHTML();
+      }
+    });
+}
+
+function engineerQuestions() {
+  inquirer
+    .prompt([
+        {
+            type: "input",
+            message: "What is the Engineer's name?",
+            name: "name"
+        }, {
+            type: "input",
+            message: "What is the Engineer's ID number?",
+            name: "id"
+        }, {
+            type: "input",
+            message: "What is the Engineer's email address? ",
+            name: "email"
+        }, {
+            type: "input",
+            message: "What is the Engineer's GitHub Username?",
+            name: "github"
+        },
+    ])
+    .then((info) => {
+      const engineer = new Engineer(info.name, info.id, info.email, info.github);
+      console.log(engineer);
+      teamArray.push(engineer);
+      addNewMember();
+    });
+}
+
+function internQuestions() {
+  inquirer
+    .prompt([
+        {
+            type: "input",
+            message: "What is the Intern's name?",
+            name: "name"
+        }, {
+            type: "input",
+            message: "What is the Intern's ID number?",
+            name: "id"
+        }, {
+            type: "input",
+            message: "What is the Intern's email address? ",
+            name: "email"
+        }, {
+            type: "input",
+            message: "What school does the Intern attend?",
+            name: "school"
+        },
+    ])
+    .then((info) => {
+      const intern = new Intern(info.name, info.id, info.email, info.school);
+      console.log(intern)
+      teamArray.push(intern);
+      addNewMember();
+    });
+}
+
+
+startQuestions();
