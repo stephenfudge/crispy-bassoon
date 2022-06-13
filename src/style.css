@@ -1,3 +1,11 @@
-.bg-pink {
+.bg-intern {
     background-color: pink;
+}
+
+.bg-manager {
+    background-color: fuchsia;
+}
+
+.bg-engineer {
+    background-color: hotpink;
 }

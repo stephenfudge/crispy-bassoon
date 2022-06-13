@@ -7,7 +7,7 @@ function newManager(info) {
     info.forEach(manager => {
         managerMember.push(`
     <div class="card shadow m-2 col-3">
-    <div class="card-header bg-primary ml-0 mt-1 rounded">
+    <div class="card-header bg-manager ml-0 mt-1 rounded">
         <h2 class= "card-title">${manager.name}</h2>
         <h5 class="card-text"><i class="fas fa-coffee"></i>&nbsp; Manager</h5>
     </div>
@@ -20,6 +20,7 @@ function newManager(info) {
     </div>
 </div>`)
     });
+    return managerMember.join("");
 }
 
 
@@ -30,7 +31,7 @@ function newEngineer(info) {
     info.forEach(engineer => {
         engineerMember.push(`
         <div class="card shadow m-2 col-3">
-        <div class="card-header bg-pink ml-0 mt-1 rounded">
+        <div class="card-header bg-engineer ml-0 mt-1 rounded">
             <h2 class= "card-title">${engineer.name}</h2>
             <h5 class="card-text"><i class="fas fa-cogs"></i>&nbsp; Engineer</h5>
         </div>
@@ -53,7 +54,7 @@ function newIntern(info) {
     info.forEach(intern => {
         internMember.push(`
         <div class="card shadow m-2 col-3">
-        <div class="card-header bg-pink ml-0 mt-1 rounded">
+        <div class="card-header bg-intern ml-0 mt-1 rounded">
             <h2 class= "card-title">${intern.name}</h2>
             <h5 class="card-text"><i class="fas fa-graduation-cap"></i>&nbsp; Intern</h5>
         </div>
@@ -86,7 +87,7 @@ function renderSite(info) {
         
 
         <nav class="navbar navbar-dark bg-warning text-center">
-        <span class="navbar-brand mb-0 w-100 h1 text-white">My Team</span>
+        <span class="navbar-brand mb-0 w-100 h1 text-white">Welcome To Your Team</span>
     </nav>
 
             <main class="container my-5">
