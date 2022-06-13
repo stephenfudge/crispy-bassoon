@@ -127,7 +127,7 @@ startQuestions();
 
 
 function createHTML() {
-  fs.writeFile('index.html', renderSite(teamArray),
+  fs.writeFile('./dist/index.html', renderSite(teamArray),
     (err) =>
     err ? console.log(err) : console.log('Success!')
   );
