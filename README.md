@@ -28,7 +28,7 @@ Below is a screenshot of what the terminal should look like after the questions 
 
 ![alt text](assets//terminal.png)
 
-There is also a [Video Link](https://youtu.be/iQDll91LnE4)
+There is also a [Video Link](https://youtu.be/6Neih1ce284)
 
 ## Credits
 I used MDN for help with classes. I used https://www.npmjs.com/ for documentation on the packages so that I knew how to manipulate the data.  
